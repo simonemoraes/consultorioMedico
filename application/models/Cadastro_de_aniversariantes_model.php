@@ -7,9 +7,14 @@ class Cadastro_de_aniversariantes_model extends CI_Model {
 
     var $tabela_pacientes = "pacientes";
 
-    public function listaTodos() {
+    public function listaTodos($sort = 'id', $order = 'asc', $limit = null, $offset = null ) {
 
-        $query = $this->db->order_by("nome","asc");
+        $query = $this->db->order_by($sort, $order);
+        
+        if ($limit){
+            $this->db->limit($limit, $offset);
+        }
+        
         $query = $this->db->get($this->tabela_pacientes);
         if ($query->num_rows() > 0) {
             return $query->result_array();

@@ -1,13 +1,13 @@
 <?php include 'cabecalho.php' ?>
 
 <div style="margin-top: 150px;" class="container">
- 
+
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
 
             <div id="div_error" style="display: none"></div>
             <div id="mensagem"></div>
-            
+
             <!-- Inicio painel -->
             <div class="panel panel-primary div_panel">
                 <div class="panel-heading text-center">
@@ -96,11 +96,13 @@
                                         <td class="align_td" id="convenio"><?= $value['convenio'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
-                            <?php endif; ?>
 
-                        </tbody>
+                            </tbody>
 
-                    </table>
+                        </table>
+                        <?php echo $pagination; ?>
+                    <?php endif; ?>
+
                 </div>
                 <div class="panel-footer text-center">
 

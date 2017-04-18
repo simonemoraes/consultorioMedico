@@ -41,6 +41,9 @@
 $route['default_controller'] = "cadastroaniversariantes";
 $route['404_override'] = '';
 
+$route['pacientes/p'] = "cadastroaniversariantes/formulario";
+$route['pacientes/p/(:num)'] = "cadastroaniversariantes/formulario";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

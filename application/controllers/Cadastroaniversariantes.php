@@ -18,10 +18,39 @@ class Cadastroaniversariantes extends CI_Controller {
     }
 
     public function formulario() {
-
-        $listaAniversariante = $this->Cadastro_de_aniversariantes_model->listaTodos();
-
-        $dados = array("aniversariantes" => $listaAniversariante);
+        $config = array(
+            "base_url" => base_url('/index.php/Cadastroaniversariantes/formulario'),
+            "per_page" => 10,
+            "num_links" => 3,
+            "uri_segment" => 3,
+            "total_rows" => $this->Cadastro_de_aniversariantes_model->countAll(),
+            "full_tag_open" => "<div class='text-center'><ul class='pagination'>",
+            "full_tag_close" => "</ul></div>",
+            "first_link" => false,
+            "last_link" => false,
+            "first_tag_open" => "<li>",
+            "first_tag_close" => "</li>",
+            "prev_link" => "Anterior",
+            "prev_tag_open" => "<li class='prev'>",
+            "prev_tag_close" => "</li>",
+            "next_link" => "Posterior",
+            "next_tag_open" => "<li class='next'>",
+            "next_tag_close" => "</li>",
+            "last_tag_open" => "<li>",
+            "last_tag_close" => "</li>",
+            "cur_tag_open" => "<li class='active'><a href='#'>",
+            "cur_tag_close" => "</a></li>",
+            "num_tag_open" => "<li>",
+            "num_tag_close" => "</li>"
+        );
+        
+        $this->pagination->initialize($config);
+        $dados['pagination'] = $this->pagination->create_links();
+        
+        $offset = $this->uri->segment(3)? $this->uri->segment(3) : 0;
+        $listaAniversariante = $this->Cadastro_de_aniversariantes_model->listaTodos('nome', 'asc', $config['per_page'], $offset);
+        
+        $dados['aniversariantes'] = $listaAniversariante;
 
         $this->load->view('cadastro/cadastro_de_aniversariantes', $dados);
     }
