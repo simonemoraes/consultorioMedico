@@ -1,0 +1,1 @@
+[17-Apr-2017 16:33:19 America/Sao_Paulo] PHP Fatal error:  Call to undefined function dataMysqlParaPtBr() in /home/ruiand/public_html/simone/consultorioMedico/application/views/cadastro/cadastro_de_aniversariantes.php on line 95
