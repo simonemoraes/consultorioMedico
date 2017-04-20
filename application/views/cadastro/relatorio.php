@@ -47,7 +47,7 @@
 
                                     <div class="col-md-2 col-sm-6 col-xs-6">
                                         <button style="width: 100%;" class="btn btn-primary" name="mes" id="btn_teste">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Buscar</button>
+                                            <i class="fa fa-search" aria-hidden="true"></i> &nbsp;Buscar</button>
                                     </div>
 
 				    <div class="col-md-1 col-sm-6 col-xs-6">
