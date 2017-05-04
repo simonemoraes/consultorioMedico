@@ -46,23 +46,32 @@
                                     </div>
 
                                     <div class="col-md-2 col-sm-6 col-xs-6">
-                                        <button style="width: 100%;" class="btn btn-primary" name="mes" id="btn_teste">
+                                        <button style="width: 100%;" class="btn btn-primary" name="mes" id="btn_buscar">
                                             <i class="fa fa-search" aria-hidden="true"></i> &nbsp;Buscar</button>
                                     </div>
 
-				    <div class="col-md-1 col-sm-6 col-xs-6">
-                                        <a class="btn btn-warning" href="<?= base_url("index.php/GerarPdf") ?>" target="_blank">Gerar Pdf</a>
-                                    </div>
+                                    <?php
+                                    if ($lista) {
+                                        ?>
+                                        <div class="col-md-1 col-sm-6 col-xs-6"  id="btn_pdf">
+                                            <a class="btn btn-warning"  href="<?= base_url("index.php/GerarPdf") ?>" target="_blank">Gerar Pdf</a>
+                                        </div>
+                                    <?php }else{?>
+                                        <div class="col-md-1 col-sm-6 col-xs-6"  id="btn_pdf">
+                                            <button class="btn btn-warning" disabled  href="<?= base_url("index.php/GerarPdf") ?>" target="_blank">Gerar Pdf</button>
+                                        </div>
+                                   <?php }
+                                    ?>
                                 </div>
                             </div>
 
                         </form>
                     </div>
-                    
+
                     <?php
                     ob_start();
                     ?> 
-                    
+
                     <div style="border-top: 1px solid #ddd" class="panel-body">
                         <table class="table table-bordered" id="tabelaClientes">
                             <thead style="background-color: #f5f5f5;">
@@ -123,7 +132,7 @@
     $filename = "code.html"; // Nome do arquivo HTML
     file_put_contents($filename, $buffer); // Grava os dados do buffer interno no arquivo HTML
     ?>
-    
+
 </div>
 
 

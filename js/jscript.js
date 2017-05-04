@@ -1,7 +1,9 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
 
     /* Esta função salva os registros no banco */
     $('#btn_salvar').click(function () {
+        var cpf = $('#id_cpf').val();
+       
 
         var id = '';
 
@@ -11,18 +13,20 @@
 
         if (valida()) {
 
-            $.post('http://simone.ruianderson.com.br/consultorioMedico/index.php/Cadastroaniversariantes/salvar', {
+            $.post('http://localhost/consultorioMedico/index.php/Cadastroaniversariantes/salvar', {
                 id: id,
                 nome: $('#id_nome').val(),
                 dt_nasc: $('#id_dt_nasc').val(),
+                cpf: cpf,
+                telefone: $('#id_telefone').val(),
                 convenio: $('#id_convenio').val()
 
             }, function (data, status) {
-
+                
                 if (data) {
                     
                     window.location.reload();
-                    alert("Registro inserido com sucesso!!");
+                    alert(data);
                 } else {
                     alert("Ocorreu um erro ao inserir o registro!!");
                 }
@@ -43,10 +47,12 @@
 
         if (valida()) {
 
-            $.post('http://simone.ruianderson.com.br/consultorioMedico/index.php/Cadastroaniversariantes/remover', {
+            $.post('http://localhost/consultorioMedico/index.php/Cadastroaniversariantes/remover', {
                 id: id,
                 nome: $('#id_nome').val(),
                 dt_nasc: $('#id_dt_nasc').val(),
+                cpf: $('#id_cpf').val(),
+                telefone: $('#id_telefone').val(),
                 convenio: $('#id_convenio').val()
             }, function (data, status) {
                 if (data) {
@@ -79,7 +85,7 @@ $('#tabelaClientes tbody tr').each(function () {
 
             var id = $(this).find('td[id=id]').text();
             
-            $.post('http://simone.ruianderson.com.br/consultorioMedico/index.php/Cadastroaniversariantes/editar', {
+            $.post('http://localhost/consultorioMedico/index.php/Cadastroaniversariantes/editar', {
                 id: id
             }, function (data, status) {
 
@@ -97,38 +103,44 @@ $('#tabelaClientes tbody tr').each(function () {
 
 /* Popula tabela com aniversariantes do mes 
  * Esta função foi desabilitada*/
-$('#btn_buscar').click(function () {
+//$('#btn_buscar').click(function () {
+//
+//    var mes = $('#select option:selected').val();
+//    //alert('Pagina Inicial: ' + mes);
+//
+//    var url = 'http://simone.ruianderson.com.br/consultorioMedico/index.php/Cadastroaniversariantes/relatorio';
+//
+//    $.post(url, {
+//        mes: mes
+//    }, function (data, status) {
+//
+//        var dados = JSON.parse(data);
+//
+//        var html_td = "";
+//        
+//        
+//        
+//        habilitaBtnPdf(dados);
+//
+//        if (dados !== 'vazio') {
+//            habilitaBtnPdf(dados);
+//            $.each(dados, function (i, item) {
+//                html_td = html_td + "<tr><td class='align_td'>" + item.id + "</td>";
+//                html_td = html_td + "<td class='align_td'>" + item.nome + "</td>";
+//                html_td = html_td + "<td class='align_td'>" + item.data_nasc + "</td>";
+//                html_td = html_td + "<td class='align_td'>" + item.convenio + "</td></tr>";
+//            });
+//
+//            $('#lista_aniver').html(html_td);
+//            //console.log(html_td);
+//
+//        } else {
+//            window.location.reload();
+//            alert("Não existe aniversariante para este mes especifico!");
+//        }
+//    });
+//});
 
-    var mes = $('#select option:selected').val();
-    //alert('Pagina Inicial: ' + mes);
-
-    var url = 'http://simone.ruianderson.com.br/consultorioMedico/index.php/Cadastroaniversariantes/relatorio';
-
-    $.post(url, {
-        mes: mes
-    }, function (data, status) {
-
-        var dados = JSON.parse(data);
-
-        var html_td = "";
-
-        if (dados !== 'vazio') {
-            $.each(dados, function (i, item) {
-                html_td = html_td + "<tr><td class='align_td'>" + item.id + "</td>";
-                html_td = html_td + "<td class='align_td'>" + item.nome + "</td>";
-                html_td = html_td + "<td class='align_td'>" + item.data_nasc + "</td>";
-                html_td = html_td + "<td class='align_td'>" + item.convenio + "</td></tr>";
-            });
-
-            $('#lista_aniver').html(html_td);
-            //console.log(html_td);
-
-        } else {
-            window.location.reload();
-            alert("Não existe aniversariante para este mes especifico!");
-        }
-    });
-});
 
 
 /* COLORE A TABELA DE ACORDO COM O MOUSE */
@@ -147,6 +159,8 @@ function preencheCampos(data) {
     $('#id').val(data.id);
     $('#id_nome').val(data.nome);
     $('#id_dt_nasc').val(data.dt_nasc);
+    $('#id_cpf').val(data.cpf);
+    $('#id_telefone').val(data.telefone);
     $('#id_convenio').val(data.convenio);
 }
 

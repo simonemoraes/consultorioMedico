@@ -57,8 +57,14 @@ class Cadastro_de_aniversariantes_model extends CI_Model {
         $this->db->where("id", $id_paciente);
         return $this->db->get($this->tabela_pacientes);
     }
-
-    function countAll() {
+    
+    public function buscaPorCpf($cpf){
+        $this->db->select('cpf');
+        $this->db->where("cpf", $cpf);
+        $query = $this->db->get($this->tabela_pacientes);
+        return $query->result_array();
+    }
+            function countAll() {
         return $this->db->count_all($this->tabela_pacientes);
     }
 

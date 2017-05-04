@@ -40,6 +40,18 @@
                                     <input itemid="Convenio" class="form-control verificar" type="text" name="convenio" id="id_convenio" placeholder="Nome do Convenio">
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <label>Cpf:</label>
+                                    <input itemid="cpf" class="form-control verificar"  type="text" name="cpf" id="id_cpf" placeholder="Digite o Cpf">
+                                </div>
+
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <label>Telefone:</label>
+                                    <input itemid="telefone" class="form-control verificar" type="text" name="telefone" id="id_telefone" placeholder="Digite o telefone">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -75,6 +87,7 @@
                                 <th class="text-center">Id</th>
                                 <th class="text-center">Nome</th>
                                 <th class="text-center">Data de Nascimento</th>
+                                <th class="text-center">Telefone</th>
                                 <th class="text-center">Convenio</th> 
                             </tr>
                         </thead>
@@ -85,6 +98,7 @@
                                     <td id="id"></td>
                                     <td id="nome"></td>
                                     <td id="dt_nasc"></td>
+                                    <td id="telefone"></td>
                                     <td id="convenio"></td>
                                 </tr>
                             <?php else : ?>
@@ -93,6 +107,7 @@
                                         <td class="align_td" id="id"><?= $value['id'] ?></td>
                                         <td class="align_td" id="nome"><?= $value['nome'] ?></td>
                                         <td class="align_td" id="dt_nasc"><?= dataMysqlParaPtBr($value['dt_nasc']) ?></td>
+                                        <td class="align_td" id="telefone"><?= $value['telefone'] ?></td>
                                         <td class="align_td" id="convenio"><?= $value['convenio'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
